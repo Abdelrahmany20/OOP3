@@ -2,6 +2,152 @@
 {
     internal class Program
     {
+
+
+        public struct Person
+        {
+
+            //Q02 P1
+            public string name;
+            public int age;
+
+            public Person(string Name, int Age)
+            {
+                name = Name;
+                age = Age;
+            }
+        }
+
+        public class Employee : IComparable
+        {  //Q01 p2
+
+
+
+            //public int ID;
+            //public string Name;
+            //public string Security;
+            //public decimal Salary;
+            //public DateTime HireDate;
+            //public string Gender;
+
+
+            //0.	Create an array of Employees with size three a DBA, Guest and the third one is security officer who have full permissions. (Employee [] EmpArr;)
+
+
+            public int ID
+            {
+                get { return ID; }
+                set { ID = value; }
+            }
+            public string Name
+            {
+                get { return Name; }
+                set { Name = value; }
+            }
+            public string Security
+            {
+                get { return Security; }
+                set { Security = value; }
+            }
+            public decimal Salary
+            {
+
+                get { return Salary; }
+                set { Salary = value; }
+
+            }
+            public DateTime HireDate
+            {
+                get { return HireDate; }
+                set { HireDate = value; }
+
+            }
+            public string Gender
+            {
+                get { return Gender; }
+                set { Gender = value; }
+            }
+
+            public Employee(int id, string name, string securityLevel, decimal salary, DateTime hireDate, string gender)
+
+            {
+                ID = id;
+                Name = name;
+                Security = securityLevel;
+                Salary = salary;
+                HireDate = hireDate;
+                Gender = gender;
+
+            }
+
+
+
+
+
+            public override string ToString()
+            {
+                return $"ID :{ID} , name : {Name} , securityLevel : {Security} , salary : {Salary} , HireDate :{HireDate} , Gender : {Gender}  ";
+            }
+
+
+
+
+            public class HiringDate //Q02
+            {
+                public int Day;
+                public int Month;
+                public int Year;
+
+                public HiringDate(int day, int month, int year)
+                {
+                    Day = day;
+                    Month = month;
+                    Year = year;
+                }
+
+                public override string ToString()
+                {
+                    return $"Day : {Day} , Month : {Month} , Year : {Year}";
+                }
+            }
+
+
+            //public enum Gender //Q03
+            //{
+            //M, F
+            //}
+
+
+
+
+            public void empinfo()
+            {//0.	Create an array of Employees with size three a DBA, Guest and the third one is security officer who have full permissions. (Employee [] EmpArr;)
+
+
+                Console.WriteLine($"ID :{ID} , name : {Name} , securityLevel : {Security} , salary : {Salary} , HireDate :{HireDate} , Gender : {Gender}  ");
+
+
+            }
+
+
+            public enum SecurityLevel
+            {  //Q04
+                Guest,
+                Developer,
+                Secretary,
+                DBA
+            }
+
+
+
+        }
+
+
+
+
+
+
+
         static void Main(string[] args)
         {
 
@@ -192,20 +338,129 @@
 
             #region PART 2
 
+            #region Q01
+
+            //Person[] persons = new Person[3];
+
+            //persons[0] = new Person("A", 10);
+            //persons[1] = new Person("B", 15);
+            //persons[2] = new Person("C", 20);
+
+            //for (int i = 0; i < persons.Length; i++)
+            //{
+            //Console.WriteLine($"Name: {persons[i].name}, Age: {persons[i].age}");
+            //}
+
+            #endregion
+
+            #region Q02
+
+            //2.Create a struct called "Person" with properties "Name" and "Age".
+            //Write a C# program that takes details of 3 persons as input from the user and displays the name and age of the oldest person.
 
 
+            //Person[] people = new Person[3];
+
+            //for (int i = 0; i < 3; i++)
 
 
+            //{
+
+            //Console.WriteLine("Enter the Name :");
+            //string name = Console.ReadLine();
 
 
+            //Console.WriteLine("Enter The Age :");
+            //int age = int.Parse(Console.ReadLine());
 
+            //people[i] = new Person(name, age);
 
+            //}
+            //Person oldestPerson = people[0];
+
+            //for (int i = 1; i < 3; i++)
+            //{
+            //if (people[i].age > oldestPerson.age)
+            //oldestPerson = people[i];
+            //}
+
+            //Console.WriteLine($"Oldest person is :{oldestPerson.name}");
+            #endregion
 
 
             #endregion
 
 
+            #region Part 3
 
-        }
+
+
+
+            //try
+            //{
+            //Employee[] EmpArr1 = new Employee[3];
+
+            //EmpArr1[0] = new Employee(1, "a", "DBA", 1000, new DateTime(2000, 1, 1), "M");
+            //EmpArr1[1] = new Employee(2, "b", "Guest", 2000, new DateTime(2000, 2, 2), "M");
+            //EmpArr1[2] = new Employee(3, "c", "Security Officer", 5000, new DateTime(2000, 3, 3), "M");
+
+            //for (int i = 0; i < EmpArr1.Length; i++)
+            //{
+            //EmpArr1[i].empinfo();
+            //}
+            //}
+
+            //catch (Exception ex)
+            //{
+            //Console.WriteLine(ex.Message);
+
+
+            //}
+
+
+
+
+
+
+
+
+
+
+
+            //q07
+
+            Employee[] EmpArr = new Employee[3];
+
+            EmpArr[0] = new Employee(1, "a", "DBA", 1000, new DateTime(2000, 1, 1), "M");
+            EmpArr[1] = new Employee(2, "b", "Guest", 2000, new DateTime(2000, 2, 2), "M");
+            EmpArr[2] = new Employee(3, "c", "Security Officer", 5000, new DateTime(2000, 3, 3), "M");
+
+
+            Console.WriteLine(" before sorting :");
+            for (int i = 0; i < EmpArr.Length; i++)
+            {
+                EmpArr[i].empinfo();
+            }
+
+
+            Array.Sort(EmpArr);
+            Console.WriteLine("after sorting:");
+
+            Console.WriteLine("\nEmployees sorted by hire date:");
+            foreach (var employee in EmpArr)
+            {
+                Console.WriteLine($"Name: {employee.Name}, Security: {employee.Security}, Salary: {employee.Salary}, Hire Date: {employee.HireDate}, Gender : {employee.Gender}");
+            }
+
+            //public int CompareTo(object? obj)
+            //{
+            //throw new NotImplementedException();
+            //}
+
+            #endregion
+
+
+        } 
     }
 }
+
